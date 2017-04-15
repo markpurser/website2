@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600">
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="https://use.fontawesome.com/55ecca03f4.js"></script>
 
   </head>
   <body>
@@ -29,50 +30,54 @@
       <![endif]-->
 
     <header>
-      <section>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">Portfolio</a>
-          <a href="#" class="highlight">About</a>
-          <a href="#">Contact</a>
-        </nav>
-      </section>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Projects</a>
+        <a href="#" class="highlight">About</a>
+        <a href="#">Contact</a>
+      </nav>
 
-      <div>
+      <article>
         <div>
-          <h1>Mark Purser</h1>
-          <h2>Freelance Software Developer</h2>
-          <p>I am a freelance software developer. I've been creating <strong>web, embedded and games</strong> applications for 15+ years, establishing strong <strong>relationships</strong> with clients and organisations. <strong>Quality</strong> is a key characteristic of my work, with an emphasis on <strong>testing and best practices</strong>. I can deliver timely results but I'm always challenging myself to explore the principles underlying what I produce. For me it is about making great products that benefit the client and go beyond expectations.</p>
-          <p>To find out more about me click here. I am interested in collaborations and working on open source projects. I would love to demonstrate the positive contributions I can make towards your team.</p>
+          <div class="title">Mark Purser</div>
+          <div class="subtitle">Freelance Software Developer</div>
+          <div class="strapline">
+            <p>I am a freelance software developer. I've been creating <strong>web, embedded and games</strong> applications for 15+ years, establishing strong <strong>relationships</strong> with clients and organisations. <strong>Quality</strong> is a key characteristic of my work, with an emphasis on <strong>testing and best practices</strong>. I can deliver timely results but I'm always challenging myself to explore the principles underlying what I produce. For me it is about making great products that benefit the client and go beyond expectations.</p>
+            <p>To find out more about me click here. I am interested in collaborations and working on open source projects. I would love to demonstrate the positive contributions I can make towards your team.</p>
+          </div>
         </div>
-      </div>
+      </article>
 
     </header>
 
-    <section>
-      <div>
-        <h2>Key Services</h2>
+    <section class="socialmedia">
+      <i class="fa fa-linkedin-square"></i>
+    </section>
+
+    <section class="services">
+      <article>
+        <h1>Services</h1>
 
         <ul>
-          <h3>Web Application Development</h3>
-          <h3>E-Commerce</h3>
-          <h3>Software Architecture</h3>
-          <h3>Embedded and Safety Critical Software</h3>
-          <h3>Front End Visualisation/Games</h3>
-          <h3>Image Processing Applications</h3>
-          <h3>Support</h3>
-          <h3>Legacy Upgrades and Migration</h3>
-          <h3>Configuration and Troubleshooting</h3>
+          <li>Web Application Development</li>
+          <li>E-Commerce</li>
+          <li>Software Architecture</li>
+          <li>Embedded and Safety Critical Software</li>
+          <li>Front End Visualisation/Games</li>
+          <li>Image Processing Applications</li>
+          <li>Support</li>
+          <li>Legacy Upgrades and Migration</li>
+          <li>Configuration and Troubleshooting</li>
         </ul>
         <p><a href="#" role="button">Learn more &raquo;</a></p>
-      </div>
+      </article>
     </section>
 
 
-    <section>
+    <section class="portfolio">
       <div>
-        <h1>Portfolio</h1>
+        <h1>Projects</h1>
             
           <article class="projectitem">
             <div>
@@ -84,7 +89,7 @@
             </div>
             <div>
               <a href="https://www.gseaonline.com/">
-                <img src="img/gsea/landing_page_thumb.png" alt="Screenshot of GSEA">
+                <img src="img/gsea/landing_page.png" alt="Screenshot of GSEA">
               </a>
             </div>
           </article>
@@ -120,7 +125,98 @@
       </div>
     </section>
 
-    <section>
+    <section class="contact">
+      <h1>Get in Touch</h1>
+
+      <form action="https://www.enformed.io/mt25iw3p" method="POST">
+        <div class="form-group">
+          <input style="width:100%" name="first_name" placeholder="Name" type="text" class="form-control" required="required"/>
+        </div>
+        <div class="form-group">
+          <input style="width:100%" name="email" placeholder="Email" type="email" required="required"/>
+        </div>
+        <div class="form-group">
+          <textarea rows="6" style="width:100%" name="message" placeholder="Message" type="text" class="form-control" required="required"></textarea>
+        </div>
+        <input type="hidden" name="*honeypot" />
+        <input class="formbutton" type="submit" value="Send"/>
+      </form>
+    </section>
+
+
+    <section class="about">
+      <div>
+        <h1>About</h1>
+
+        <article>
+          <p>I started as a freelancer in 2015, initially working on an e-commerce web application in the charity sector.</p>
+          <p>Since then I have been developing open source projects, troubleshooting web sites and creating financial trading indicators.</p>
+          <p>My past experience has been in the aviation/flight simulation industry for 10 years. I have also 3 years experience in VR, 3 years console games and another 2 years in the medical sector. The latter included safety-critical software to IEC 61508 and IEC 62304.</p>
+          <p>I've made programming my career because there always seems to be more to learn and the industry is always changing. I love talking with other coders and sharing experiences with technology. I believe that great software is built on good communication and transparency.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="skills">
+      <div>
+        <h1>Skills</h1>
+
+        <article>
+          <li>Languages: C++ (MISRA, Boost), PHP, ES6 Javascript, Matlab, C#, Python, Java, Assembly Language (6502, 68000, Hitachi H8)</li>
+          <li>Front End: HTML5, CSS3, XML, JSON, JQuery, AngularJS</li>
+          <li>Back End: Laravel, ASP.NET, QT, Mono (Xamarin), Android SDK, OpenFrameworks</li>
+          <li>Servers: Apache, Tomcat, Glassfish</li>
+          <li>Databases: MySQL, SQL Server, SQLite</li>
+          <li>Platforms: Linux, Xbox360, PS3, Android, iOS</li>
+          <li>Tools: Git, SVN, Perforce, Vagrant, Jira, Rational DOORS, HP ALM, Hansoft, Jenkins, Enterprise Architect, PHPUnit, Googletest, Hippomocks</li>
+          <li>Image Processing: OpenCV, Matlab Image Processing Toolkit, ImageJ, IrfanView</li>
+        </article>
+      </div>
+    </section>
+
+    <section class="articles">
+      <div>
+        <h1>Articles</h1>
+
+        <article>
+          <p><a href="#">Haskell Christmas Tree</a></p>
+          <p><a href="#">Programming a retro game in functional-style ES6</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="hobbies">
+      <div>
+        <h1>Hobbies</h1>
+
+        <article>
+          <h3>Robots</h3>
+
+          <p>This is the robot project that I work on in my spare time. It has a Raspberry Pi as the main compute module and Arduino interfacing to the camera and other hardware. It is programmed in Python. My goal is to get some route navigation working. At it's simplest level this can be done with a proximity sensor and by using dead reckoning to build a map of the environment. But I plan to augment this with visual input to increase robustness. Building up snapshots of your environment creates a memory that can be recalled as a 'visual compass'. The method is inspired by how ants navigate their way in the world.</p>
+        </article>
+
+        <article>
+          <h3>Retro games and roguelikes</h3>
+
+          <p>I like retro game programming and have programmed a Galaxian clone on the C64 and a Defender clone in ES6. I'm also a fan of roguelikes such as TomeNET. I like the looks of ROT.js</p>
+        </article>
+
+        <article>
+          <h3>Warhammer 40k painting</h3>
+
+          <p>I paint these Dark Eldar models in my spare time.</p>
+        </article>
+
+        <article>
+          <h3>Cycling and walking</h3>
+
+          <p>I cycle to Shoreham and back with friends. I'm also part way through completing the South Downs Way and am planning to do a Macmillan charity walk this year.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="blog">
       <div>
         <h2>Blog</h2>
 
@@ -285,68 +381,8 @@
 
 
 
-    <h1>About</h1>
-
-    <section>
-      <div>
-        <h2>About Me</h2>
-
-        <p>I started as a freelancer in 2015, initially working on an e-commerce web application in the charity sector.</p>
-        <p>Since then I have been developing open source projects, troubleshooting web sites and creating financial trading indicators.</p>
-        <p>My past experience has been in the aviation/flight simulation industry for 10 years. I have also 3 years experience in VR, 3 years console games and another 2 years in the medical sector. The latter included safety-critical software to IEC 61508 and IEC 62304.</p>
-        <p>I've made programming my career because there always seems to be more to learn and the industry is always changing. I love talking with other coders and sharing experiences with technology. I believe that great software is built on good communication and transparency.</p>
-      </div>
-    </section>
-
-    <section>
-      <div>
-        <h2>Skills</h2>
-
-        <li>Languages: C++ (MISRA, Boost), PHP, ES6 Javascript, Matlab, C#, Python, Java, Assembly Language (6502, 68000, Hitachi H8)</li>
-        <li>Front End: HTML5, CSS3, XML, JSON, JQuery, AngularJS</li>
-        <li>Back End: Laravel, ASP.NET, QT, Mono (Xamarin), Android SDK, OpenFrameworks</li>
-        <li>Servers: Apache, Tomcat, Glassfish</li>
-        <li>Databases: MySQL, SQL Server, SQLite</li>
-        <li>Platforms: Linux, Xbox360, PS3, Android, iOS</li>
-        <li>Tools: Git, SVN, Perforce, Vagrant, Jira, Rational DOORS, HP ALM, Hansoft, Jenkins, Enterprise Architect, PHPUnit, Googletest, Hippomocks</li>
-        <li>Image Processing: OpenCV, Matlab Image Processing Toolkit, ImageJ, IrfanView</li>
-      </div>
-    </section>
-
-    <section>
-      <div>
-        <h2>Hobbies</h2>
-
-        <article>
-          <h3>Robots</h3>
-
-          <p>This is the robot project that I work on in my spare time. It has a Raspberry Pi as the main compute module and Arduino interfacing to the camera and other hardware. It is programmed in Python. My goal is to get some route navigation working. At it's simplest level this can be done with a proximity sensor and by using dead reckoning to build a map of the environment. But I plan to augment this with visual input to increase robustness. Building up snapshots of your environment creates a memory that can be recalled as a 'visual compass'. The method is inspired by how ants navigate their way in the world.</p>
-        </article>
-
-        <article>
-          <h3>Retro games and roguelikes</h3>
-
-          <p>I like retro game programming and have programmed a Galaxian clone on the C64 and a Defender clone in ES6. I'm also a fan of roguelikes such as TomeNET. I like the looks of ROT.js</p>
-        </article>
-
-        <article>
-          <h3>Warhammer 40k painting</h3>
-
-          <p>I paint these Dark Eldar models in my spare time.</p>
-        </article>
-
-        <article>
-          <h3>Cycling and walking</h3>
-
-          <p>I cycle to Shoreham and back with friends. I'm also part way through completing the South Downs Way and am planning to do a Macmillan charity walk this year.</p>
-        </article>
-
-      </div>
-    </section>
 
     <footer>
-      <h1>Get in Touch</h1>
-
       <address>
         <span>Address:</span>
         Mark Purser, Flat 1, 8 Chaucer Road, Worthing, West Sussex, BN11 4PB
