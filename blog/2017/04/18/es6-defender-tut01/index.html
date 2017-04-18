@@ -1,0 +1,137 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mark Purser, Freelance Software Developer, Home Page</title>
+    <meta name="description" content="Based near Brighton, UK, I offer bespoke web, e-commerce and embedded software development services">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../../../css/normalize.css">
+    <link rel="stylesheet" href="../../../../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600">
+
+    <script src="../../../../../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="../../../../../js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="https://use.fontawesome.com/55ecca03f4.js"></script>
+
+  </head>
+  <body>
+      <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+    <header>
+      <nav>
+        <a href="../../../../../index.html#">Home</a>
+        <a href="../../../../../index.html#services">Services</a>
+        <a href="../../../../../index.html#projects">Projects</a>
+        <a href="../../../../../about.html" class="highlight">About</a>
+        <a href="../../../../../index.html#contact">Contact</a>
+      </nav>
+
+    <section class="blog">
+        <h2>Blog</h2>
+
+        <article>
+          <h2>Programming a retro game in functional-style ES6</h2>
+          <h3>Intro</h3>
+
+          <p>ES6 adds some cool features such as the arrow function syntax =>. Combined with the map, filter and reduce functions (introduced in ES5 Array.prototype) makes for some expressive coding opportunities in Javascript. And what better way to start than to create this Classic Defender clone (c William's)</p>
+
+          <p>In making this game, I am aiming for a learning and teaching exercise. In that respect it's an experiment in ES6 and functional programming. As such, I have not attempted to balance the game or create some great graphics.</p>
+
+          <h3>Structuring your Code</h3>
+          <p>When starting from a clean slate, the obvious question is how do you structure your code? I can recommend this blog <a href="http://prog21.dadgum.com/23.html">here</a> which contains some great practical tips on structuring functional code for games.</p>
+
+          <p>There are also a few anti-patterns that I want to avoid. Some Clojure game code I've seen simply pass around huge structures of state and use update-in to mutate parts of the structure. This isn't exactly a good way to utilise a functional language.</p>
+
+          <p>With this in mind, I have stuck to a few simple rules:</p>
+          <ol>
+            <li>the code must be concise but still be readable and extensible</li>
+            <li>every function does a single, simple task. pass in only the parameters that are required for the function to perform it's task</li>
+            <li>define custom data types using classes. allow inheritance, but no class methods or polymorphism</li>
+            <li>avoid large structures. prefer parallel arrays or association using maps</li>
+            <li>functions with side-effects should be isolated and labelled as such</li>
+            <li>easily unit testable</li>
+          </ol>
+
+          <h3>Retro Vision</h3>
+          <p>To make the game really retro the graphics are drawn in an emulated ascii mode on an HTML5 canvas. Instead of moving sprites around, the retrovision.js code uses fixed sprites to make a grid of characters.</p>
+
+          <p>All coordinate systems are based on characters not pixels.</p>
+
+          <p>retrovision.js is built on top of PIXI.js so is nice and fast</p>
+
+          <h3>Tutorial 01 - Player and Controls</h3>
+
+          <p>The code for the first part of this tutorial can be found in es6-defender-tut01.js</p>
+
+          <h3>Data Types</h3>
+          <p>The first thing we need to do is clearly define our data types. It's important to create structures that model exactly what our game elements will need.</p>
+
+          <p>ES6 has the new class syntax which we will use to define our custom data type. To model the state of the player we need some sort of state machine. We also need to track position and velocity.</p>
+
+          <p>As is normal in game programming, there are several game objects that we need to represent and inheritance is a good way of sharing characteristics between classes. In this case we use a base class containing position and velocity data members. The base class is called StateVector. I also add an id member, a unique identifier, which isn't strictly part of a state vector but it's convenient to store it here.</p>
+
+          <p>The Player super class contains the state of the player state machine. It also includes t_startState which is the time that the last state change occurred.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-datatypes.js"></script>
+
+          <p>For the player movement we need some constants that we can tweak. We have playerMaxSpeed X and Y; the units are chars/second. Damping is also measured in chars/second and Acceleration is in chars/second<sup>2</sup>.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-constants.js"></script>
+
+          <p>Next we create the graphical aspects of the Player with static data members. The sideLen is the width/length of the game object used for collisions. The graphic variable is the string of ascii codes that index into the tile map terminal.png.</p>
+
+          image here
+
+          <p>There are two graphics for the Player representing left and right directions. The colour is a simple RGB value.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-appearance.js"></script>
+
+          <p>Having defined our player attributes, we can start updating and drawing to the screen!</p>
+
+          <h3>Update Player</h3>
+
+          <p>As mentioned in the intro, the aim is to decompose functions into small units that perform single tasks. One way of doing this is to separate the update of state and the update of position. This way we limit the number of arguments (dependencies) on each function.</p>
+
+          <p>The update state function is very simple. The only dependencies are the player object itself, the input controls (keyboard keypresses) and a boolean indicating if the player is dead. If the player presses left arrow key, we set the state to faceLeft, and vice versa.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-updatestate.js"></script>
+
+          <p>Updating the position requires the state vector of the player, the input controls and delta time, the time elapsed since the previous frame. The use of dt in the model ensures that the physics calculations are referenced to real time and not to simulation time.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-updatepos.js"></script>
+
+          <h3>Drawing</h3>
+
+          <p>Two coordinate systems are used - global and local. The global coordinate system is always aligned with the player in x. The local coordinate system is the fixed coordinates of the canvas tilemap aligned with the top-left corner. To transform between the two, an offset variable is used named offsetx. It contains the x displacement between the two coordinate systems.</p>
+
+          <p>y is the same in both coordinate systems and requires no transformation.</p>
+
+          <p>The function that performs the x transformation is called toLocal. We also need to determine if any local coordinates lie outside of the canvas boundary before drawing anything. The clip function does this.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-coordtransform.js"></script>
+
+          <p>Getting the player drawn to the screen is simply a case of transforming, clipping and sending the graphics to the textmap (retrovision.js). There is an intermediate stage where we create a graphics map and a display list. This is so that we can decouple the specific game objects from the generic drawing algorithm. In OOP it would be done using polymorphism.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-draw.js"></script>
+
+          <p>Lastly we update the offsetx displacement based on player movement and apply easing so that any transition is smooth.</p>
+
+          <script src="https://gist.github.com/markpurser/d62e51cdf92d7d1135713c2d354ecb3c.js?file=player-localoffset.js"></script>
+
+          <p>Tutorial 02 coming soon...</p>
+
+        </article>
+    </section>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

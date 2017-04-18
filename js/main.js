@@ -3,7 +3,7 @@ $(document).ready(function() {
     $("header nav a").click(function() {
 
     	    // Make sure this.hash has a value before overriding default behavior
-		if (this.hash !== "") {
+		if (this.hash !== "" && $(this).attr('id') === "scroll") {
 		  // Prevent default anchor click behavior
 		  event.preventDefault();
 
@@ -14,7 +14,7 @@ $(document).ready(function() {
 		  // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
 		  $('html, body').animate({
 		    scrollTop: $(hash).offset().top
-		  }, 400, function(){
+		  }, 200, function(){
 
 		    // Add hash (#) to URL when done scrolling (default click behavior)
 		    window.location.hash = hash;

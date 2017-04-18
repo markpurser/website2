@@ -1,0 +1,107 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mark Purser, Freelance Software Developer, Home Page</title>
+    <meta name="description" content="Based near Brighton, UK, I offer bespoke web, e-commerce and embedded software development services">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../../../css/normalize.css">
+    <link rel="stylesheet" href="../../../../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600">
+
+    <script src="../../../../../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="../../../../../js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="https://use.fontawesome.com/55ecca03f4.js"></script>
+
+  </head>
+  <body>
+      <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+    <header>
+      <nav>
+        <a href="../../../../../index.html#">Home</a>
+        <a href="../../../../../index.html#services">Services</a>
+        <a href="../../../../../index.html#projects">Projects</a>
+        <a href="../../../../../about.html" class="highlight">About</a>
+        <a href="../../../../../index.html#contact">Contact</a>
+      </nav>
+
+    <section class="blog">
+        <h2>Blog</h2>
+
+        <article>
+          <p>Haskell Christmas Tree</p>
+
+          <p>date: 2017-01-03 12:05:35 +0000</p>
+          <p>categories: [Functional Programming, Haskell]</p>
+
+          <p>Below is my solution to one of the exercises created by the [Functional Brighton](https://www.meetup.com/Functional-Brighton) group: draw a Christmas tree to the console, given the height of the tree as input. It demonstrates some of the Input and Output of Chapter 9 of [Learn You A Haskell For Great Good](http://learnyouahaskell.com).</p>
+
+          <p>In terms of tree visuals we are going for a fairly minimalist approach:</p>
+
+          <code>
+          runhaskell xmas 4
+
+              *
+             ***
+            *****
+           *******
+              |
+          </code>
+
+          <p>To model the tree, draw from two sets of integers. The first being the number of spaces preceding each row - simply beginning at height-1 and decrementing to 0 (the last row of the tree, ignoring the trunk)</p>
+
+          <code>
+          nspaces :: Int -> [Int]
+          nspaces a = reverse $ take a [0..]
+          </code>
+
+          <p>The second set of integers represent the stars that make up the actual tree. The set consists of the odd numbers beginning from 1. These are generated using a list comprehension:</p>
+
+          <code>
+          nstars :: Int -> [Int]
+          nstars a = take a [x | x <- [1..], odd x]
+          </code>
+
+          <p>Now we simply zip these two sets together into a list of tuples:</p>
+
+          <code>
+          let treemodel = zip (nspaces height) (nstars height)
+          </code>
+
+          <p>And run them through a stringifyer, converting each tuple to a number of space characters followed by a number of stars characters:</p>
+
+          <code>
+          stringifytreerow :: (Int, Int) -> [Char]
+          stringifytreerow (nspaces, nstars) = (take nspaces $ repeat ' ') ++ (take nstars $ repeat '*')
+          </code>
+
+          <p>And now to the whole point of the IO chapter, to display something! It's simple using mapM_ which maps putStrLn over all tree strings and sequences the resulting IO actions. We display the tree trunk at the same time:</p>
+
+          <code>
+          mapM_ putStrLn $ treestrings
+          putStrLn trunkstring
+          </code>
+
+          <h3>Limitations</h3>
+
+          <p>The program does not check for invalid input, such as height 0</p>
+
+          <h3>Full listing</h3>
+
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js"></script>
+        </article>
+    </section>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
