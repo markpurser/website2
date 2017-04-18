@@ -186,7 +186,7 @@ header {
 .socialmedia {
 	background-color: rgb(255,255,255);
 	color: black;
-	font-size: 3em;
+	font-size: 2.5em;
 	text-align: center;
 }
 
@@ -226,7 +226,7 @@ header {
 }
 
 nav {
-	padding: 10px 0 10px 0;
+	padding: 5px 0 5px 0;
 	background-color: rgba(255,255,255,.6);
 
 	display: -webkit-flex;
@@ -236,7 +236,7 @@ nav {
 }
 
 nav a {
-	font-size: 1.1em;
+	font-size: 1em;
 	font-weight: bold;
 	width: 18%;
 	padding-top: 4px;
