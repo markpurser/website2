@@ -35,29 +35,32 @@
       </nav>
 
     <section class="blog">
-        <h2>Blog</h2>
-
         <article>
           <h2>Programming a retro game in functional-style ES6</h2>
+
           <h3>Intro</h3>
 
           <p>ES6 adds some cool features such as the arrow function syntax =>. Combined with the map, filter and reduce functions (introduced in ES5 Array.prototype) makes for some expressive coding opportunities in Javascript. And what better way to start than to create this Classic Defender clone (c William's)</p>
 
           <p>In making this game, I am aiming for a learning and teaching exercise. In that respect it's an experiment in ES6 and functional programming. As such, I have not attempted to balance the game or create some great graphics.</p>
 
+          <a href="../../../../../es6-defender/index.html">
+            <img src="../../../../../img/es6-defender.png" alt="Screenshot of es6-defender" style="width: 100%; height: auto">
+          </a>
+
           <h3>Structuring your Code</h3>
-          <p>When starting from a clean slate, the obvious question is how do you structure your code? I can recommend this blog <a href="http://prog21.dadgum.com/23.html">here</a> which contains some great practical tips on structuring functional code for games.</p>
+          <p>When starting from a clean slate, the obvious question is how do you structure your code? I can recommend James Hague's <a href="http://prog21.dadgum.com/23.html">blog</a> which contains some great practical tips on structuring functional code for games.</p>
 
           <p>There are also a few anti-patterns that I want to avoid. Some Clojure game code I've seen simply pass around huge structures of state and use update-in to mutate parts of the structure. This isn't exactly a good way to utilise a functional language.</p>
 
           <p>With this in mind, I have stuck to a few simple rules:</p>
           <ol>
-            <li>the code must be concise but still be readable and extensible</li>
-            <li>every function does a single, simple task. pass in only the parameters that are required for the function to perform it's task</li>
-            <li>define custom data types using classes. allow inheritance, but no class methods or polymorphism</li>
-            <li>avoid large structures. prefer parallel arrays or association using maps</li>
-            <li>functions with side-effects should be isolated and labelled as such</li>
-            <li>easily unit testable</li>
+            <li>The code must be concise but still be readable and extensible</li>
+            <li>Every function does a single, simple task. pass in only the parameters that are required for the function to perform it's task</li>
+            <li>Define custom data types using classes. allow inheritance, but no class methods or polymorphism</li>
+            <li>Avoid large structures. prefer parallel arrays or association using maps</li>
+            <li>Functions with side-effects should be isolated and labelled as such</li>
+            <li>Easily unit testable</li>
           </ol>
 
           <h3>Retro Vision</h3>
@@ -88,7 +91,7 @@
 
           <p>Next we create the graphical aspects of the Player with static data members. The sideLen is the width/length of the game object used for collisions. The graphic variable is the string of ascii codes that index into the tile map terminal.png.</p>
 
-          image here
+          <img src="../../../../../es6-defender/assets/terminal.png" style="background-color: black; display: block; margin: 0 auto; margin-bottom: 20px" alt="Screenshot of terminal.png">
 
           <p>There are two graphics for the Player representing left and right directions. The colour is a simple RGB value.</p>
 
