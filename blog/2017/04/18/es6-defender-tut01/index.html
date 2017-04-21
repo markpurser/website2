@@ -40,24 +40,24 @@
 
           <h3>Intro</h3>
 
-          <p>ES6 adds some cool features such as the arrow function syntax =>. Combined with the map, filter and reduce functions (introduced in ES5 Array.prototype) makes for some expressive coding opportunities in Javascript. And what better way to start than to create this Classic Defender clone (c William's)</p>
+          <p>ES6 adds some cool features such as the arrow function syntax =>. Combined with the map, filter and reduce functions (introduced in ES5 Array.prototype) makes for some expressive coding opportunities in Javascript. To learn to use these features requires a practical programming challenge, so I've begun by creating this clone of classic Defender (&copy; Williams Electronics).</p>
 
-          <p>In making this game, I am aiming for a learning and teaching exercise. In that respect it's an experiment in ES6 and functional programming. As such, I have not attempted to balance the game or create some great graphics.</p>
+          <p>The aim is for a learning and teaching exercise; an experiment in ES6 and functional programming. As such I have not attempted to balance the game or create some great graphics.</p>
 
           <a href="../../../../../es6-defender/index.html">
             <img src="../../../../../img/es6-defender.png" alt="Screenshot of es6-defender" style="width: 100%; height: auto">
           </a>
 
           <h3>Structuring your Code</h3>
-          <p>When starting from a clean slate, the obvious question is how do you structure your code? I can recommend James Hague's <a href="http://prog21.dadgum.com/23.html">blog</a> which contains some great practical tips on structuring functional code for games.</p>
+          <p>When starting from scratch, the obvious question is how do you structure your code? I stumbled across this article early on by James Hague's <a href="http://prog21.dadgum.com/23.html">blog</a> which contains some great practical tips on structuring functional code for games.</p>
 
-          <p>There are also a few anti-patterns that I want to avoid. Some Clojure game code I've seen simply pass around huge structures of state and use update-in to mutate parts of the structure. This isn't exactly a good way to utilise a functional language.</p>
+          <p>There are also a few anti-patterns that I want to avoid. Some Clojure game code I've seen simply pass around huge structures of state and use update-in to mutate parts of the structure. Intuitively this doesn't seem a good way to utilise a functional language IMHO.</p>
 
           <p>With this in mind, I have stuck to a few simple rules:</p>
           <ol>
             <li>The code must be concise but still be readable and extensible</li>
-            <li>Every function does a single, simple task. pass in only the parameters that are required for the function to perform it's task</li>
-            <li>Define custom data types using classes. allow inheritance, but no class methods or polymorphism</li>
+            <li>Every function does a single, simple task. Strictly pass in only the parameters that are required for the function to perform it's task</li>
+            <li>Define custom data types using classes. Allow inheritance, but no class methods or polymorphism</li>
             <li>Avoid large structures. prefer parallel arrays or association using maps</li>
             <li>Functions with side-effects should be isolated and labelled as such</li>
             <li>Easily unit testable</li>
@@ -131,7 +131,7 @@
 
           <p>Tutorial 02 coming soon...</p>
 
-          <h3>Todos</h3>
+          <h3>To-dos</h3>
           <ol>
             <li>pre-load sounds</li>
             <li>radar</li>
@@ -145,31 +145,26 @@
           </ol>
 
         </article>
+
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = 'http://markpurser.co.uk/blog/2017/01/03/haskell-christmas/';
+                this.page.identifier = 'http://markpurser.co.uk/blog/2017/01/03/haskell-christmas/';
+            };
+            (function() { 
+                var d = document, s = d.createElement('script');
+                
+                s.src = '//markpurser.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+                
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     </section>
 
-    <section>
-      <h1>Comments</h1>
-      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    </section>
-
-    <script type="text/javascript">
-          var disqus_shortname = 'markpurser';
-          
-            
-            // var disqus_developer = 1;
-            var disqus_identifier = 'http://markpurser.co.uk/blog/2017/01/03/haskell-christmas/';
-            var disqus_url = 'http://markpurser.co.uk/blog/2017/01/03/haskell-christmas/';
-            var disqus_script = 'embed.js';
-          
-        (function () {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        }());
-    </script>
-
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../../../../../js/plugins.js"></script>
+    <script src="../../../../../js/main.js"></script>
   </body>
 </html>

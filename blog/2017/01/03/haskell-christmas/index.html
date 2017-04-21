@@ -44,49 +44,27 @@
 
           <p>In terms of tree visuals we are going for a fairly minimalist approach:</p>
 
-          <code>
-          runhaskell xmas 4
-
-              *
-             ***
-            *****
-           *******
-              |
-          </code>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=gistfile1.txt"></script>
 
           <p>To model the tree, draw from two sets of integers. The first being the number of spaces preceding each row - simply beginning at height-1 and decrementing to 0 (the last row of the tree, ignoring the trunk)</p>
 
-          <code>
-          nspaces :: Int -> [Int]
-          nspaces a = reverse $ take a [0..]
-          </code>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=gistfile2.hs"></script>
 
           <p>The second set of integers represent the stars that make up the actual tree. The set consists of the odd numbers beginning from 1. These are generated using a list comprehension:</p>
 
-          <code>
-          nstars :: Int -> [Int]
-          nstars a = take a [x | x <- [1..], odd x]
-          </code>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=gistfile3.hs"></script>
 
           <p>Now we simply zip these two sets together into a list of tuples:</p>
 
-          <code>
-          let treemodel = zip (nspaces height) (nstars height)
-          </code>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=gistfile4.hs"></script>
 
           <p>And run them through a stringifyer, converting each tuple to a number of space characters followed by a number of stars characters:</p>
 
-          <code>
-          stringifytreerow :: (Int, Int) -> [Char]
-          stringifytreerow (nspaces, nstars) = (take nspaces $ repeat ' ') ++ (take nstars $ repeat '*')
-          </code>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=gistfile5.hs"></script>
 
           <p>And now to the whole point of the IO chapter, to display something! It's simple using mapM_ which maps putStrLn over all tree strings and sequences the resulting IO actions. We display the tree trunk at the same time:</p>
 
-          <code>
-          mapM_ putStrLn $ treestrings
-          putStrLn trunkstring
-          </code>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=gistfile6.hs"></script>
 
           <h3>Limitations</h3>
 
@@ -94,11 +72,28 @@
 
           <h3>Full listing</h3>
 
-          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js"></script>
+          <script src="https://gist.github.com/markpurser/18ef346fcbd509e4b3ed4342048a9bb6.js?file=xmas.hs"></script>
         </article>
+
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = 'http://markpurser.co.uk/blog/2017/01/03/haskell-christmas/';
+                this.page.identifier = 'http://markpurser.co.uk/blog/2017/01/03/haskell-christmas/';
+            };
+            (function() { 
+                var d = document, s = d.createElement('script');
+                
+                s.src = '//markpurser.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+                
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     </section>
 
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../../../../../js/plugins.js"></script>
+    <script src="../../../../../js/main.js"></script>
   </body>
 </html>
