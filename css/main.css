@@ -9,17 +9,12 @@
 body {
 	background-color: rgb(50,122,167);
 
-  font-size: 1.1em;
-  line-height: 1.6;
-  font-weight: 400;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222;
-
+	font-size: 1.1em;
+	line-height: 1.6;
+	font-weight: 400;
+	font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #222;
 }
-/*p {
-	font-family: "Varela Round", Arial, Helvetica, sans-serif;
-}
-*/
 
 .title, .subtitle {
 	text-align: center;
@@ -56,8 +51,6 @@ p {
 }
 
 h1, h2, h3 {
-/*	color: #fff;
-*/	/*font-family: Arial, "Palatino Linotype", Times, serif;*/
 	padding-top: 10px;
 	padding-bottom: 5px;
 	max-width: 960px;
@@ -138,23 +131,23 @@ nav a {
 /* nav bar for screen sizes < 500px */
 @media (max-width: 500px) {
 	nav {
-	  display: -webkit-flex;
-	  display: flex;
-	  -webkit-flex-flow: column wrap;
-	          flex-flow: column wrap;
-	  -webkit-align-items: flex-start;
-	          align-items: flex-start;
-	  max-width: 760px;
-	  margin: 0 auto;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: column wrap;
+		      flex-flow: column wrap;
+		-webkit-align-items: flex-start;
+		      align-items: flex-start;
+		max-width: 760px;
+		margin: 0 auto;
 	}
 	nav a {
-	  -webkit-flex: 1 0 auto;
-	          flex: 1 0 auto; 
-	  width: 100%;
-	  padding: 8px 2%;
-	  font-weight: 600;
-	  border-bottom: 1px solid #bbb;
-	  box-sizing: border-box; 
+		-webkit-flex: 1 0 auto;
+		      flex: 1 0 auto; 
+		width: 100%;
+		padding: 8px 2%;
+		font-weight: 600;
+		border-bottom: 1px solid #bbb;
+		box-sizing: border-box; 
 	}
 }
 
@@ -241,7 +234,7 @@ section {
 }
 
 .services ul li p {
-	  font-size: 0.9em;
+	font-size: 0.9em;
 	font-weight: 100;
 }
 
@@ -256,13 +249,13 @@ section {
 }
 
 .meter span {
-  display: block;
-  height: 100%;
-  background-color: #3293ff;
-  position: relative;
-  overflow: hidden;
-  color: white;
-  text-align: center;
+	display: block;
+	height: 100%;
+	background-color: #3293ff;
+	position: relative;
+	overflow: hidden;
+	color: white;
+	text-align: center;
 }
 
 .skillbar {

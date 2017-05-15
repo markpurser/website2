@@ -1,5 +1,9 @@
 # www.robotstxt.org/
 
-# Allow crawling of all content
 User-agent: *
-Disallow:
+Disallow: /old/
+Disallow: /old2/
+Disallow: /old3/
+Disallow: /GSEA_Presentation/
+Disallow: /Website2/
+Disallow: /laravel-crudkit-docs/
