@@ -31,7 +31,7 @@ body {
 }
 
 .subtitle {
-	width: 50%;
+	width: 70%;
 	font-size: 1.8em;
 }
 
@@ -40,6 +40,12 @@ body {
 	background-color: white;
 	color: black;
 	padding: 20px;
+	margin: 60px auto 60px auto;
+}
+
+.strapline h4 {
+	font-size: 1.6em;
+	margin-bottom: 20px;
 }
 
 ol {
@@ -110,8 +116,8 @@ nav a {
 	cursor: pointer;
 }
 
-/* nav bar for screen sizes > 500px */
-@media (min-width: 500px) {
+/* nav bar for screen sizes > 760px */
+@media (min-width: 760px) {
 	nav {
 		display: -webkit-flex;
 		display: -flex;
@@ -128,8 +134,8 @@ nav a {
 	}
 }
 
-/* nav bar for screen sizes < 500px */
-@media (max-width: 500px) {
+/* nav bar for screen sizes < 760px */
+@media (max-width: 760px) {
 	nav {
 		display: -webkit-flex;
 		display: flex;
