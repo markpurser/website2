@@ -134,7 +134,7 @@ nav a {
 
 	nav a {
 		font-size: 1em;
-		font-weight: bold;
+		font-weight: normal;
 		width: 12%;
 		padding-top: 4px;
 		padding-bottom: 4px;
@@ -169,7 +169,7 @@ nav a {
 }
 
 nav a:hover, nav a.highlight {
-	border-bottom: 3px solid rgb(255,100,20);
+	border-bottom: 3px solid rgb(0, 38, 255);
 }
 
 

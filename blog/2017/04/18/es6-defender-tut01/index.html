@@ -51,27 +51,25 @@
 
           <h3>Intro</h3>
 
-          <p>ES6 adds some cool features such as the arrow function syntax =>. Combined with the map, filter and reduce functions (introduced in ES5 Array.prototype) makes for some expressive coding opportunities in Javascript. To learn to use these features requires a practical programming challenge, so I've begun by creating this clone of classic Defender (&copy; Williams Electronics).</p>
-
-          <p>The aim is for a learning and teaching exercise; an experiment in ES6 and functional programming. As such I have not attempted to balance the game or create some great graphics.</p>
+          <p>ES6 adds some nice features such as the arrow function syntax =>. Combined with the map, filter and reduce functions (introduced in ES5 Array.prototype) makes for some expressive coding opportunities in Javascript. In this practical programming challenge, I've begun to create a clone of Classic Defender (&copy; Williams Electronics).</p>
 
           <a href="../../../../../es6-defender/index.html">
             <img src="../../../../../img/es6-defender.png" alt="Screenshot of es6-defender" style="width: 100%; height: auto">
           </a>
 
-          <h3>Structuring your Code</h3>
-          <p>When starting from scratch, the obvious question is how do you structure your code? I stumbled across this article early on by James Hague's <a href="http://prog21.dadgum.com/23.html">blog</a> which contains some great practical tips on structuring functional code for games.</p>
+          <h3>Structuring the Code</h3>
+          <p>I stumbled across this article early on by James Hague's <a href="http://prog21.dadgum.com/23.html">blog</a> which contains some great practical tips on structuring functional code for games.</p>
 
-          <p>There are also a few anti-patterns that I want to avoid. Some Clojure game code I've seen simply pass around huge structures of state and use update-in to mutate parts of the structure. Intuitively this doesn't seem a good way to utilise a functional language IMHO.</p>
+          <p>There are also a few anti-patterns that I want to avoid. Some Clojure game code I've seen simply pass around huge structures of state and use update-in to mutate parts of the structure. Intuitively this doesn't seem a good way to utilise a functional language.</p>
 
-          <p>With this in mind, I have stuck to a few simple rules:</p>
+          <p>With this in mind, I have stuck to a few simple rules of thumb:</p>
           <ol>
             <li>The code must be concise but still be readable and extensible</li>
             <li>Every function does a single, simple task. Strictly pass in only the parameters that are required for the function to perform it's task</li>
             <li>Define custom data types using classes. Allow inheritance, but no class methods or polymorphism</li>
-            <li>Avoid large structures. prefer parallel arrays or association using maps</li>
-            <li>Functions with side-effects should be isolated and labelled as such</li>
-            <li>Easily unit testable</li>
+            <li>Avoid large structures but prefer parallel arrays or association using maps</li>
+            <li>Functions with side-effects should be isolated and labelled</li>
+            <li>Easily unit-testable</li>
           </ol>
 
           <h3>Retro Vision</h3>
@@ -86,7 +84,7 @@
           <p>The code for the first part of this tutorial can be found in es6-defender-tut01.js</p>
 
           <h3>Data Types</h3>
-          <p>The first thing we need to do is clearly define our data types. It's important to create structures that model exactly what our game elements will need.</p>
+          <p>The first thing that needs doing it to clearly define our data types. It's important to create structures that model exactly what our game elements will need.</p>
 
           <p>ES6 has the new class syntax which we will use to define our custom data type. To model the state of the player we need some sort of state machine. We also need to track position and velocity.</p>
 

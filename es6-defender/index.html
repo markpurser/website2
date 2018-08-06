@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+
+<!--
+/*
+* ES6 Defender
+*
+* Copyright (C) 2017  Mark Purser
+* Released under the MIT license
+* http://github.com/markpurser/es6-defender/LICENSE
+*/
+-->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6 Defender</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+        #render-canvas { border:1px solid #ccc }
+    </style>
+
+</head>
+<body onload="init();">
+    <canvas id="render-canvas"></canvas>
+
+    <script src="js/vendor/pixi-4.4.1.min.js"></script>
+    <script src="js/vendor/input.js"></script>
+    <script src="js/es6-defender.min.js"></script>
+
+    <script>
+        function init()
+        {
+            var canvas = document.getElementById("render-canvas");
+            canvas.width = window.innerWidth-10;
+            canvas.height = window.innerHeight-10;
+
+            var tileWidthPx = 8;
+            var tileHeightPx = 8;
+
+            var viewWidth = Math.floor(canvas.width / tileWidthPx);
+            var viewHeight = Math.floor(canvas.height / tileHeightPx);
+
+            var retrovision = new RetroVision;
+            retrovision.init({
+                renderCanvas: document.getElementById("render-canvas"),
+                renderCanvasSize: {width: canvas.width, height: canvas.height},
+                tilesheetImage: "assets/terminal.png",
+                tileWidthPx: tileWidthPx,
+                tileHeightPx: tileHeightPx,
+                viewWidth: viewWidth,
+                viewHeight: viewHeight
+            })
+            .then(function() {
+                keyboard = new Keyboard();
+                playerX = 0;
+                playerY = 0;
+                clock = 0;
+
+                var sound = function(type) {
+                    var file = '';
+                    switch(type) {
+                        case '1up':   file = 'assets/sound/1up.wav';   break;
+                        case 'boom':  file = 'assets/sound/boom.wav';  break;
+                        case 'coin':  file = 'assets/sound/coin.wav';  break;
+                        case 'death': file = 'assets/sound/death.wav'; break;
+                        case 'zap':   file = 'assets/sound/zap.wav';   break;
+                    }
+                    var audio = new Audio(file);
+                    audio.play();
+                }
+
+                var nullSoundPlayer = function(){};
+
+                resetGame(viewWidth, viewHeight, nullSoundPlayer);
+
+                var spaceLatch = 0;
+                var paused = false;
+                var soundOn = false;
+                var lastTime = null;
+                var dead = false;
+
+                function animate(timestamp)
+                {
+                    if (!lastTime) lastTime = timestamp;
+                    var dt = (timestamp - lastTime) / 1000;
+                    lastTime = timestamp;
+
+                    if(soundOn) soundPlayer = sound;
+                    else        soundPlayer = nullSoundPlayer;
+
+                    var input = {updown: 0, leftright: 0, fire: 0};
+
+                    if(keyboard.isKeyPressed(Keyboard.KEYS.UP))
+                    {
+                        input.updown = -1;
+                    }
+
+                    if(keyboard.isKeyPressed(Keyboard.KEYS.DOWN))
+                    {
+                        input.updown = 1;
+                    }
+
+                    if(keyboard.isKeyPressed(Keyboard.KEYS.LEFT))
+                    {
+                        input.leftright = -1;
+                    }
+
+                    if(keyboard.isKeyPressed(Keyboard.KEYS.RIGHT))
+                    {
+                        input.leftright = 1;
+                    }
+
+                    if(spaceLatch == 1)
+                    {
+                        if(!keyboard.isKeyPressed(Keyboard.KEYS.SPACE)) spaceLatch = 0;
+                    }
+
+                    if(keyboard.isKeyPressed(Keyboard.KEYS.SPACE) && spaceLatch == 0)
+                    {
+                        input.fire = 1;
+                        spaceLatch = 1;
+                    }
+
+                    if(keyboard.isKeyPressedAndReleased(Keyboard.KEYS.P))
+                    {
+                        paused = !paused;
+                    }
+
+                    if(keyboard.isKeyPressedAndReleased(Keyboard.KEYS.S))
+                    {
+                        soundOn = !soundOn;
+                    }
+
+                    if(keyboard.isKeyPressedAndReleased(Keyboard.KEYS.R))
+                    {
+                        dead = false;
+                        paused = false;
+                        resetGame(viewWidth, viewHeight, soundPlayer);
+                    }
+
+                    if(!paused) {
+                        dead = doGame(retrovision, input, soundPlayer, clock++, dt, false);
+
+                        if(dead) {
+                            paused = true;
+                            retrovision.setString(Math.floor(viewWidth / 2) - 10, Math.floor(viewHeight / 2), 'DEAD press r to restart game');
+                        }
+
+                        retrovision.setString(viewWidth - 60, 2, 'r - reset game');
+                        retrovision.setString(viewWidth - 40, 2, 'p - pause game');
+
+                        if(soundOn) retrovision.setString(viewWidth - 20, 2, 's - sound off');
+                        else        retrovision.setString(viewWidth - 20, 2, 's - sound on ');
+
+                        retrovision.setString(5, viewHeight - 1, 'Code by Mark Purser.  Defender by Williams.  Sounds by ChipTone, SFB Games.  Pixi.js by Mathew Groves, Chad Engler.');
+
+                        retrovision.render();
+                    }
+
+                    requestAnimationFrame(animate);
+                }
+
+                requestAnimationFrame(animate);
+            });
+        }
+    </script>
+
+</body>
+</html>
