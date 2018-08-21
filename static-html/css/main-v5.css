@@ -7,13 +7,12 @@
 * {margin: 0; padding: 0;}
 
 body {
-	background-color: rgb(150,150,150);
+	background-color: rgb(230,230,230);
 
-	font-size: 1.1em;
 	line-height: 1.6;
 	font-weight: 400;
 	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #222;
+	color: #4a4f53;
 }
 
 .title, .subtitle {
@@ -38,10 +37,9 @@ body {
 .strapline {
 	text-align: left;
 	background-color: white;
-	color: black;
+	color: #444;
 	padding: 20px;
 	margin: 60px auto 60px auto;
-	border-radius: 10px;
 	box-shadow: 5px 5px 10px rgba(0,0,0,.1);
 }
 
@@ -65,8 +63,9 @@ p {
 
 header {
   padding: 0;
-  background-image: url(../img/artem-sapegin-176819.jpg);
-  background-size: cover;
+  /* Background pattern from Toptal Subtle Patterns */
+  background-image: url(../img/funky-lines.png);
+  background-repeat: repeat;
   background-attachment: fixed;
 }
 
@@ -115,7 +114,7 @@ nav {
 }
 
 nav a {
-	color: black;
+	color: #666;
 	text-align: center;
 	letter-spacing: .1rem;
 	text-decoration: none;
@@ -214,8 +213,7 @@ section {
 .services, .portfolio, .about, .hobbies, .testimonials, .skills, .blog-articles, .blog {
 	max-width: 960px;
 	margin: 40px auto;
-	background-color: rgb(240,240,240);
-	border-radius: 10px;
+	background-color: rgb(250,250,250);
 	box-shadow: 5px 5px 10px rgba(0,0,0,.1);
 	color: black;
 	padding-left: 30px;
